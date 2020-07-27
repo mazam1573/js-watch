@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="watch">
+        <div class="analog">
+            <div class="hours"></div>
+            <div class="min"></div>
+            <div class="sec" id="sectrans"></div>
+        </div>
+        <div id="digital"></div>
+    </div>
+
+    <script>
+        setInterval(datetime, 1000);
+
+        function datetime() {
+            var time = new Date();
+            var hours = time.getHours();
+            var min = time.getMinutes();
+            var sec = time.getSeconds();
+            var sec_n = document.querySelector('.sec');
+            var min_n = document.querySelector('.min');
+            var h_n = document.querySelector('.hours');
+            document.getElementById('digital').innerHTML =
+                (`<span>${hours}</span>:<span>${min}</span>:<span>${sec}</span>`);
+            document.getElementById("sectrans").style.skew = "2";
+            var new_sec = ((sec / 60) * 360);
+            var new_min = ((min / 60) * 360);
+            var new_h = ((hours / 12) * 360);
+            sec_n.style.transform = `rotate(${new_sec}deg)`;
+            min_n.style.transform = `rotate(${new_min}deg)`;
+            h_n.style.transform = `rotate(${new_h}deg)`;
+        }
+    </script>
+</body>
+
+</html>
